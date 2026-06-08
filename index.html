@@ -201,6 +201,13 @@ function checkPw(){
 
         document.getElementById("bgm").play();
 
+        document.getElementById("main")
+        .addEventListener("touchstart", skipTyping);
+
+        document.getElementById("main")
+        .addEventListener("click", skipTyping);
+
+
         startTyping();
         startPetals();
     }
@@ -390,8 +397,7 @@ function skipTyping(){
     });
 }
 
-document.addEventListener("touchstart", skipTyping);
-document.addEventListener("click", skipTyping);
+
 
 function touchHeart(e){
 
