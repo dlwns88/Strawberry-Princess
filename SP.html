@@ -1,3 +1,17 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+<meta charset="UTF-8">
+<title>0딸기꼰듀0</title>
+</head>
+
+<body>
+
+여기에 로그인창 HTML
+
+<script>
+
 // 모바일 전용
 
 const isMobile =
@@ -6,86 +20,18 @@ const isMobile =
 
 if(!isMobile){
 
-document.body.innerHTML=`
-<div style="
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-background:#fff5f8;
-font-family:sans-serif;
-">
-
-<div style="
-background:white;
-padding:40px;
-border-radius:20px;
-text-align:center;
-box-shadow:0 0 20px rgba(0,0,0,.15);
-">
-
-<h1>🍓 0딸기꼰듀0 🍓</h1>
-
-<p>
-이 편지는 모바일에서만<br>
-열람 가능합니다.
-</p>
-
-<p>
-QR코드를 휴대폰으로 스캔해 주십시오.
-</p>
-
-</div>
-
-</div>
-`;
+document.body.innerHTML=`...`;
 
 throw new Error("Desktop Blocked");
 }
-
 
 // 비밀번호
 
 const PASSWORD="19961104";
 
+// checkPw 함수
 
-// 실패 횟수
+</script>
 
-let iFailCnt = 0;
-
-function checkPw(){
-
-    const pw=document.getElementById("pw").value;
-
-    if(pw===PASSWORD){
-
-        document.getElementById("login").style.display="none";
-        document.getElementById("main").style.display="block";
-
-        document.getElementById("bgm").play();
-
-        startTyping();
-        startPetals();
-
-    }else{
-
-        iFailCnt++;
-
-        if(iFailCnt == 1){
-            alert("다른 날에도 종종 닥터 스트레인지가 되는구나...?");
-        }
-        else if(iFailCnt == 2){
-            alert("20260101 형식으로 써야 한다!");
-        }
-        else if(iFailCnt == 3){
-            alert("이 정도면 진짜 모르는 건데?");
-        }
-        else if(iFailCnt == 4){
-            alert("와서 알려달라고 해");
-        }
-        else{
-            alert("힌트 : 네가 딸기공주가 된 날 🍓");
-        }
-
-    }
-}
+</body>
+</html>
