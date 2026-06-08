@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>비밀 편지</title>
+
+<style>
+body{
+    font-family: sans-serif;
+    background:#f5f5f5;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    margin:0;
+}
+
+.box{
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 0 15px rgba(0,0,0,0.1);
+    width:350px;
+    text-align:center;
+}
+
+input{
+    width:90%;
+    padding:10px;
+    margin-top:10px;
+}
+
+button{
+    margin-top:15px;
+    padding:10px 20px;
+}
+
+#letter{
+    display:none;
+    text-align:left;
+    line-height:1.8;
+}
+</style>
+
+<script>
+function checkPassword(){
+
+    var password = document.getElementById("pw").value;
+
+    if(password === "2026"){
+        document.getElementById("login").style.display="none";
+        document.getElementById("letter").style.display="block";
+    }
+    else{
+        alert("비밀번호가 틀렸습니다.");
+    }
+}
+</script>
+
+</head>
+<body>
+
+<div class="box">
+
+    <div id="login">
+        <h2>🔒 비밀 편지</h2>
+        <p>비밀번호를 입력하십시오.</p>
+
+        <input type="password" id="pw">
+        <br>
+
+        <button onclick="checkPassword()">확인</button>
+    </div>
+
+    <div id="letter">
+        <h2>💌 OO에게</h2>
+
+        <p>
+        안녕하세요.<br><br>
+
+        이 페이지를 열었다는 것은
+        비밀번호를 알고 있다는 뜻이겠지.<br><br>
+
+        항상 고맙고,
+        앞으로도 좋은 인연이 되었으면 좋겠습니다.<br><br>
+
+        - 이준 -
+        </p>
+    </div>
+
+</div>
+
+</body>
+</html>
