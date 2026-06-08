@@ -71,7 +71,8 @@ button{
 .letter{
     width:90%;
     max-width:800px;
-    margin:50px auto;
+    //margin:50px auto;
+    margin:50px auto 200px auto; //내용 입력창 아래에 여백추가
     background:white;
     padding:30px;
     border-radius:20px;
@@ -256,7 +257,13 @@ function startTyping(){
 
         area.innerHTML+=message.charAt(idx)
                             .replace(/\n/g,"<br>");
-
+        //자동스크롤 추가
+        window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: "smooth"
+                        });
+    
+        
         idx++;
 
         if(idx>=message.length){
