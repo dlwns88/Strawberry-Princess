@@ -253,6 +253,31 @@ let idx=0;
 let timer=null;
 let typingFinished=false;
 
+//숨겨진 메세지 이스터에그를 위한 전역변수 선언
+let heartCount = 0;
+let secretUnlocked = false;
+
+const originalBg = "#fff5f8";
+
+//이스터에그 메세지
+const secretMessage = `
+
+🍓
+
+사실 아직 끝이 아니야.
+
+이 편지를 여기까지 읽고
+하트까지 찾아 눌렀다는 건
+
+정말 꼼꼼하게 봤다는 거겠지?
+
+그래서 준비한 숨겨진 메시지야.
+
+항상 고맙고
+앞으로도 잘 부탁해.
+
+❤️`;
+
 function startTyping(){
 
     const area=document.getElementById("typing");
@@ -315,6 +340,14 @@ const items = [
 p.innerHTML =
     items[Math.floor(Math.random() * items.length)];
 
+        //하트 이모지 터치 이벤트 추가
+        if(p.innerHTML === "💖"){
+
+            p.addEventListener("touchstart", touchHeart);
+            p.addEventListener("click", touchHeart);
+        
+        }
+
         p.style.left=Math.random()*100+"vw";
 
         //p.style.fontSize=(15+Math.random()*20)+"px";
@@ -338,8 +371,16 @@ function skipTyping(){
 
     clearInterval(timer);
 
+    //document.getElementById("typing").innerHTML =
+        //message.replace(/\n/g,"<br>");
+    let allText = message;
+
+    if(secretUnlocked){
+        allText += secretMessage;
+    }
+    
     document.getElementById("typing").innerHTML =
-        message.replace(/\n/g,"<br>");
+        allText.replace(/\n/g,"<br>");
 
     typingFinished = true;
 
@@ -351,6 +392,118 @@ function skipTyping(){
 
 document.addEventListener("touchstart", skipTyping);
 document.addEventListener("click", skipTyping);
+
+function touchHeart(e){
+
+    e.stopPropagation();
+
+    const target = e.currentTarget;
+
+    target.innerHTML = "🌟";
+
+    heartCount++;
+
+    darkenBackground();
+
+    setTimeout(()=>{
+        target.remove();
+    },500);
+
+    if(heartCount >= 10 && !secretUnlocked){
+
+        secretUnlocked = true;
+
+        rainbowFlash();
+
+        setTimeout(()=>{
+            startSecretTyping();
+        },2500);
+
+    }
+
+}
+
+function darkenBackground(){
+
+    const max = 10;
+
+    const ratio = Math.min(heartCount,max) / max;
+
+    const r = Math.floor(255 - ratio * 30);
+    const g = Math.floor(245 - ratio * 20);
+    const b = Math.floor(248 - ratio * 20);
+
+    document.body.style.backgroundColor =
+        `rgb(${r},${g},${b})`;
+
+}
+
+function rainbowFlash(){
+
+    document.body.style.transition =
+        "background-color .3s";
+
+    const colors = [
+        "#ff0000",
+        "#ff8800",
+        "#ffff00",
+        "#00ff00",
+        "#00ffff",
+        "#0000ff",
+        "#ff00ff"
+    ];
+
+    let i = 0;
+
+    const rainbow = setInterval(()=>{
+
+        document.body.style.backgroundColor =
+            colors[i % colors.length];
+
+        i++;
+
+    },150);
+
+    setTimeout(()=>{
+
+        clearInterval(rainbow);
+
+        document.body.style.backgroundColor =
+            originalBg;
+
+    },2500);
+
+}
+
+function startSecretTyping(){
+
+    const area =
+        document.getElementById("typing");
+
+    let sidx = 0;
+
+    timer = setInterval(()=>{
+
+        area.innerHTML +=
+            secretMessage.charAt(sidx)
+                .replace(/\n/g,"<br>");
+
+        sidx++;
+
+        window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: "smooth"
+        });
+
+        if(sidx >= secretMessage.length){
+
+            clearInterval(timer);
+
+        }
+
+    },35);
+
+}
 
 </script>
 
