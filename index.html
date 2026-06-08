@@ -147,7 +147,7 @@ const isIPhone =
 /iPhone/i.test(navigator.userAgent);
 
 if(!isIPhone){
-document.title.Text='abc';
+document.title = "Wrong Approach"
 document.body.innerHTML=`
 
 <div style="
@@ -171,10 +171,6 @@ box-shadow:0 0 20px rgba(0,0,0,.15);
 
 <p>
 잘못된 접근입니다.
-</p>
-
-<p>
-QR코드를 휴대폰으로 스캔해 주십시오.
 </p>
 
 </div>
