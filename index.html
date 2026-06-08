@@ -228,7 +228,15 @@ function startPetals(){
 
         p.className="petal";
 
-        p.innerHTML="🌸";
+const items = [
+    "🍓","🍓","🍓","🍓",
+    "🌷","🌷","🌷",
+    "🥭","🥭",
+    "💖"
+];
+
+p.innerHTML =
+    items[Math.floor(Math.random() * items.length)];
 
         p.style.left=Math.random()*100+"vw";
 
