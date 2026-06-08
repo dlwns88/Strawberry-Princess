@@ -129,11 +129,11 @@ button{
 
 <div class="slider">
 
-<img src="photo1.jpg" class="active">
+<!--<img src="photo1.jpg" class="active">
 <img src="photo2.jpg">
 <img src="photo3.jpg">
 <img src="photo4.jpg">
-<img src="photo5.jpg">
+<img src="photo5.jpg">-->
 
 </div>
 
@@ -217,9 +217,9 @@ function checkPw(){
         {
             alert("이정도면 진짜 모르는건데?");
         }
-        else if(iFailCnt == 4)
+        else
         {
-            alert("와서 알려달라고해");
+            alert("ㅎㅎ 내가알려줄게 나한테 물어봐");
         }
         
     }
@@ -303,8 +303,8 @@ p.innerHTML =
 
         p.style.left=Math.random()*100+"vw";
 
-        p.style.fontSize=(15+Math.random()*20)+"px";
-
+        //p.style.fontSize=(15+Math.random()*20)+"px";
+        p.style.fontSize=(10+Math.random()*8)+"px"; //이모지사이즈작게
         p.style.animationDuration=
             (5+Math.random()*8)+"s";
 
@@ -314,8 +314,8 @@ p.innerHTML =
             p.remove();
         },15000);
 
-    },300);
-
+    //},300);
+    },500); //생성간격늘림
 }
 
 </script>
