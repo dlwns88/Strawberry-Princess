@@ -143,11 +143,10 @@ button{
 
 <script>
 
-const isMobile =
-/Android|iPhone|iPad|iPod|Mobile/i
-.test(navigator.userAgent);
+const isIPhone =
+/iPhone/i.test(navigator.userAgent);
 
-if(!isMobile){
+if(!isIPhone){
 document.title.Text='abc';
 document.body.innerHTML=`
 
@@ -168,7 +167,7 @@ text-align:center;
 box-shadow:0 0 20px rgba(0,0,0,.15);
 ">
 
-<h1>🍓 Strawberry Princess 🍓</h1>
+<h1>🚫접근할 수 없습니다.🚫</h1>
 
 <p>
 이 편지는 모바일에서만<br>
