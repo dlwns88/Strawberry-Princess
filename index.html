@@ -3,93 +3,251 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>비밀 편지</title>
+
+<title>🍓 Strawberry Princess 🍓</title>
 
 <style>
+
 body{
-    font-family: sans-serif;
-    background:#f5f5f5;
+    margin:0;
+    background:#fff5f8;
+    font-family:'Malgun Gothic',sans-serif;
+    overflow-x:hidden;
+}
+
+#login{
+    height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
-    height:100vh;
-    margin:0;
 }
 
 .box{
     background:white;
     padding:30px;
-    border-radius:15px;
-    box-shadow:0 0 15px rgba(0,0,0,0.1);
-    width:350px;
+    border-radius:20px;
+    box-shadow:0 0 20px rgba(0,0,0,0.15);
     text-align:center;
 }
 
 input{
-    width:90%;
     padding:10px;
-    margin-top:10px;
+    width:220px;
 }
 
 button{
-    margin-top:15px;
     padding:10px 20px;
+    margin-top:10px;
+    cursor:pointer;
 }
 
-#letter{
+#main{
     display:none;
-    text-align:left;
-    line-height:1.8;
 }
+
+.header{
+    text-align:center;
+    padding:50px 20px;
+}
+
+.slider{
+    width:90%;
+    max-width:600px;
+    margin:auto;
+}
+
+.slider img{
+    width:100%;
+    border-radius:20px;
+    display:none;
+}
+
+.slider img.active{
+    display:block;
+}
+
+.letter{
+    width:90%;
+    max-width:800px;
+    margin:50px auto;
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 0 15px rgba(0,0,0,0.1);
+    line-height:2;
+    min-height:300px;
+}
+
+.petal{
+    position:fixed;
+    top:-20px;
+    animation:fall linear infinite;
+}
+
+@keyframes fall{
+    to{
+        transform:translateY(110vh) rotate(360deg);
+    }
+}
+
 </style>
+</head>
+
+<body>
+
+<div id="login">
+
+<div class="box">
+
+<h2>🍓 Strawberry Princess 🍓</h2>
+
+<p>비밀번호를 입력하십시오.</p>
+
+<input type="password" id="pw">
+
+<br>
+
+<button onclick="checkPw()">입장</button>
+
+</div>
+
+</div>
+
+<div id="main">
+
+<audio id="bgm" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<div class="header">
+    <h1>💌 To. 딸기공주 💌</h1>
+</div>
+
+<div class="slider">
+
+<img src="photo1.jpg" class="active">
+<img src="photo2.jpg">
+<img src="photo3.jpg">
+<img src="photo4.jpg">
+<img src="photo5.jpg">
+
+</div>
+
+<div class="letter">
+    <div id="typing"></div>
+</div>
+
+</div>
 
 <script>
-function checkPassword(){
 
-    var password = document.getElementById("pw").value;
+const PASSWORD="2026";
 
-    if(password === "2026"){
+function checkPw(){
+
+    const pw=document.getElementById("pw").value;
+
+    if(pw===PASSWORD){
+
         document.getElementById("login").style.display="none";
-        document.getElementById("letter").style.display="block";
+        document.getElementById("main").style.display="block";
+
+        document.getElementById("bgm").play();
+
+        startTyping();
+        startPetals();
     }
     else{
         alert("비밀번호가 틀렸습니다.");
     }
 }
+
+const message=
+`안녕하세요.
+
+이 페이지를 열어주셔서 감사합니다.
+
+처음 만났던 날부터 지금까지
+많은 시간이 흘렀습니다.
+
+좋은 순간도 있었고,
+힘든 순간도 있었지만
+
+함께했던 시간들은
+항상 특별한 기억으로 남아있습니다.
+
+앞으로도 지금처럼
+웃는 일이 더 많았으면 좋겠습니다.
+
+항상 고맙습니다.
+
+- 이준 드림 -`;
+
+let idx=0;
+
+function startTyping(){
+
+    const area=document.getElementById("typing");
+
+    const timer=setInterval(()=>{
+
+        area.innerHTML+=message.charAt(idx)
+                            .replace(/\n/g,"<br>");
+
+        idx++;
+
+        if(idx>=message.length){
+            clearInterval(timer);
+        }
+
+    },80);
+}
+
+const slides=document.querySelectorAll(".slider img");
+
+let current=0;
+
+setInterval(()=>{
+
+    slides[current].classList.remove("active");
+
+    current++;
+
+    if(current>=slides.length)
+        current=0;
+
+    slides[current].classList.add("active");
+
+},3000);
+
+function startPetals(){
+
+    setInterval(()=>{
+
+        const p=document.createElement("div");
+
+        p.className="petal";
+
+        p.innerHTML="🌸";
+
+        p.style.left=Math.random()*100+"vw";
+
+        p.style.fontSize=(15+Math.random()*20)+"px";
+
+        p.style.animationDuration=
+            (5+Math.random()*8)+"s";
+
+        document.body.appendChild(p);
+
+        setTimeout(()=>{
+            p.remove();
+        },15000);
+
+    },300);
+
+}
+
 </script>
-
-</head>
-<body>
-
-<div class="box">
-
-    <div id="login">
-        <h2>🔒 비밀 편지</h2>
-        <p>비밀번호를 입력하십시오.</p>
-
-        <input type="password" id="pw">
-        <br>
-
-        <button onclick="checkPassword()">확인</button>
-    </div>
-
-    <div id="letter">
-        <h2>💌 OO에게</h2>
-
-        <p>
-        안녕하세요.<br><br>
-
-        이 페이지를 열었다는 것은
-        비밀번호를 알고 있다는 뜻이겠지.<br><br>
-
-        항상 고맙고,
-        앞으로도 좋은 인연이 되었으면 좋겠습니다.<br><br>
-
-        - 이준 -
-        </p>
-    </div>
-
-</div>
 
 </body>
 </html>
