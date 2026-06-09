@@ -267,6 +267,7 @@ throw new Error("Desktop Blocked");
 const PASSWORD="7";
 let iFailCnt = 0;
 let rainbowRunning = false;
+let secretTyping = false;
     
 function checkPw(){
 
@@ -470,7 +471,7 @@ p.innerHTML =
     //},300);
     },500); //생성간격늘림
 }
-
+/*
 function skipTyping(){
 
     if(rainbowRunning) return;
@@ -496,7 +497,43 @@ function skipTyping(){
         behavior: "smooth"
     });
 }
+*/
 
+function skipTyping(){
+
+    if(rainbowRunning) return;
+
+    if(typingFinished) return;
+
+    clearInterval(timer);
+
+    const area =
+        document.getElementById("typing");
+
+    // 2차 편지 출력 중
+    if(secretTyping){
+
+        area.innerHTML =
+            message.replace(/\n/g,"<br>")
+            +
+            secretMessage.replace(/\n/g,"<br>");
+
+    }
+    else{
+
+        area.innerHTML =
+            message.replace(/\n/g,"<br>");
+
+    }
+
+    typingFinished = true;
+
+    window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior:"smooth"
+    });
+
+}
 
 
 function touchHeart(e){
@@ -644,6 +681,9 @@ function rainbowFlash(){
 
 function startSecretTyping(){
 
+     secretTyping = true;
+    typingFinished = false;
+    
     const area =
         document.getElementById("typing");
 
@@ -665,6 +705,8 @@ function startSecretTyping(){
         if(sidx >= secretMessage.length){
 
             clearInterval(timer);
+            typingFinished = true;
+            secretTyping = false;
 
         }
 
