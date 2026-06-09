@@ -231,7 +231,7 @@ box-shadow:0 0 20px rgba(0,0,0,.15);
 throw new Error("Desktop Blocked");
 }
     
-const PASSWORD="3";
+const PASSWORD="5";
 let iFailCnt = 0;
     
 function checkPw(){
@@ -242,6 +242,7 @@ function checkPw(){
     
     if(pw===PASSWORD){
 
+        alert("🔊음량조절 해주세요! 소리가 나옵니다!🔊");
         document.getElementById("login").style.display="none";
 
         document.getElementById("intro").style.display="block";
