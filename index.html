@@ -118,6 +118,48 @@ button{
 
 </div>
 
+
+<div id="intro" style="display:none;">
+
+    <div style="
+        height:100vh;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+        background:black;
+    ">
+
+        <video
+            id="introVideo"
+            width="100%"
+            playsinline
+            controls="false"
+            autoplay>
+
+            <source src="intro.mp4" type="video/mp4">
+
+        </video>
+
+        <button
+            id="nextBtn"
+            onclick="showLetter()"
+            style="
+                display:none;
+                margin-top:20px;
+                padding:12px 30px;
+                font-size:18px;
+            ">
+
+            다음 💌
+
+        </button>
+
+    </div>
+
+</div>
+    
+
 <div id="main">
 
 <audio id="bgm" loop>
