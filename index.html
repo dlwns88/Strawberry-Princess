@@ -129,12 +129,18 @@ button{
         align-items:center;
         background:black;
     ">
-
+<!--
         <video
             id="introVideo"
             width="100%"
             playsinline
-            controls="false"
+            controls
+            autoplay> -->
+         <video
+            id="introVideo"
+            width="100%"
+            playsinline
+            playsinline
             autoplay>
 
             <source src="intro.mp4" type="video/mp4">
@@ -241,6 +247,18 @@ function checkPw(){
         document.getElementById("login").style.display="none";
         document.getElementById("main").style.display="block";
 
+        const video =
+        document.getElementById("introVideo");
+
+        video.play();
+    
+        video.onended = function(){
+    
+            document.getElementById("nextBtn")
+                .style.display = "block";
+    
+        };
+        /*//영상추가
         document.getElementById("bgm").play();
 
         document.getElementById("main")
@@ -252,6 +270,7 @@ function checkPw(){
 
         startTyping();
         startPetals();
+        */
     }
     else{
         iFailCnt++;
@@ -607,6 +626,26 @@ function startSecretTyping(){
 
     },35);
 
+}
+
+function showLetter(){
+
+    document.getElementById("intro")
+        .style.display = "none";
+    
+    document.getElementById("main")
+        .style.display = "block";
+    
+    document.getElementById("bgm").play();
+    
+    document.getElementById("main")
+        .addEventListener("touchstart", skipTyping);
+    
+    document.getElementById("main")
+        .addEventListener("click", skipTyping);
+    
+    startTyping();
+    startPetals();
 }
 
 </script>
