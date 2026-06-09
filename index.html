@@ -151,7 +151,6 @@ button{
             id="nextBtn"
             onclick="showLetter()"
             style="
-                display:none;
                 margin-top:20px;
                 padding:12px 30px;
                 font-size:18px;
@@ -245,19 +244,14 @@ function checkPw(){
     if(pw===PASSWORD){
 
         document.getElementById("login").style.display="none";
-        document.getElementById("main").style.display="block";
 
+        document.getElementById("intro").style.display="block";
+        
         const video =
         document.getElementById("introVideo");
-
-        video.play();
+        
+        //video.play();
     
-        video.onended = function(){
-    
-            document.getElementById("nextBtn")
-                .style.display = "block";
-    
-        };
         /*//영상추가
         document.getElementById("bgm").play();
 
